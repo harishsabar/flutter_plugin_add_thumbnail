@@ -31,8 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // Open  thumbnail dialog to add link
     await Thumbnail.addLink(
       context: context,
+
       /// callback that return thumbnail information in `MediaInfo` object
-       onLinkAdded: (mediaInfo) {
+      onLinkAdded: (mediaInfo) {
         if (mediaInfo != null && mediaInfo.thumbnailUrl.isNotEmpty) {
           setState(() {
             mediaList.add(mediaInfo);
@@ -43,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget getMediaList() {
-    return MediaListView(
+    return MediaSingleView(
       onPressed: (url) {
         print(url);
       },
@@ -59,7 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body:(mediaList == null || mediaList.isEmpty) && (urlList == null || urlList.isEmpty)
+      body: (mediaList == null || mediaList.isEmpty) &&
+              (urlList == null || urlList.isEmpty)
           ? Center(
               child: Text(
                 "Press add button to add thumbnail.",
