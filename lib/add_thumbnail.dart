@@ -1,6 +1,7 @@
 library add_thumbnail;
 
 export 'thumbnail_list_vew.dart';
+export 'thumbnail_single_view.dart';
 export 'package:add_thumbnail/src/model/media_info.dart';
 import 'package:add_thumbnail/src/bloc/bloc.dart';
 import 'package:add_thumbnail/src/model/media_info.dart';
