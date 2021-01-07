@@ -3,12 +3,16 @@ import 'dart:async';
 import 'package:add_thumbnail/src/bloc/thumbnail_event.dart';
 import 'package:add_thumbnail/src/bloc/thumbnail_state.dart';
 import 'package:add_thumbnail/src/resources/repository.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ThumbnailBloc extends Bloc<ThumbnailEvent, ThumbnailState> {
-  final Repository repo = Repository();
+  final Repository repo;
 
-  
+  ThumbnailBloc({@required this.repo})
+      : assert(repo != null),
+        super(LoadingMedia());
+
   @override
   ThumbnailState get initialState => DialogOpened();
 
@@ -18,7 +22,7 @@ class ThumbnailBloc extends Bloc<ThumbnailEvent, ThumbnailState> {
       try {
         yield LoadingMedia();
         var media = await repo.fetchAllNews(link: event.url);
-       
+
         yield LoadedMedia(mediaInfo: media);
       } catch (_) {
         yield FailureDetail();
